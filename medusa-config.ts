@@ -2,6 +2,8 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+const isAdminDisabled = process.env.ADMIN_DISABLED === 'true'
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -13,5 +15,5 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
   },
-  admin: process.env.ADMIN_DISABLED === 'true' ? undefined : {}
+  ...(isAdminDisabled ? {} : { admin: {} })
 })
