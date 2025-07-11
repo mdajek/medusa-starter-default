@@ -12,5 +12,6 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
-  }
+  },
+  admin: process.env.ADMIN_DISABLED === 'true' ? undefined : {}
 })
