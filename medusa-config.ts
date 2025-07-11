@@ -1,19 +1,13 @@
-import { loadEnv, defineConfig } from '@medusajs/framework/utils'
+import dotenv from "dotenv"
+dotenv.config()
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
-
-const isAdminDisabled = process.env.ADMIN_DISABLED === 'true'
-
-export default defineConfig({
+export default {
   projectConfig: {
-    databaseUrl: process.env.DATABASE_URL,
-    http: {
-      storeCors: process.env.STORE_CORS!,
-      adminCors: process.env.ADMIN_CORS!,
-      authCors: process.env.AUTH_CORS!,
-      jwtSecret: process.env.JWT_SECRET || "supersecret",
-      cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    },
+    database_url: process.env.DATABASE_URL,
+    jwt_secret: process.env.JWT_SECRET || "supersecret",
+    cookie_secret: process.env.COOKIE_SECRET || "supersecret",
+    store_cors: process.env.STORE_CORS,
+    admin_cors: process.env.ADMIN_CORS,
   },
-  ...(isAdminDisabled ? {} : { admin: {} }),
-})
+  plugins: [],
+}
