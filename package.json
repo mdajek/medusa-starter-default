@@ -15,7 +15,7 @@
   "scripts": {
     "build": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "ADMIN_DISABLED=true medusa start",
+    "start": "cross-env ADMIN_DISABLED=true medusa start",
     "dev": "medusa develop",
     "medusa:setup": "medusa db:setup && medusa db:migrate:scripts",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
@@ -32,6 +32,7 @@
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "awilix": "^8.0.1",
+    "cross-env": "^7.0.3",
     "pg": "^8.13.0"
   },
   "devDependencies": {
